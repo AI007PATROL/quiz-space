@@ -49,5 +49,17 @@
     <p>Your quiz has been submitted successfully.</p>
     <a href="participant-login.html" class="btn">🔑 Back to Login</a>
   </div>
+
+  <script>
+    // Clear user session (logout)
+    localStorage.removeItem("userId");
+    localStorage.removeItem("quizStarted");
+
+    // Prevent back button navigation
+    window.history.pushState(null, "", window.location.href);
+    window.onpopstate = function () {
+      window.history.pushState(null, "", window.location.href);
+    };
+  </script>
 </body>
 </html>
