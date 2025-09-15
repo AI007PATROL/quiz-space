@@ -1,61 +1,4 @@
-
-let questions = [];
-let current = 0;
-let answers = [];
-let timer = 20*60;
-let timerInterval = null;
-
-async function loadQuestions(){
-  // try API first
-  try {
-    const res = await fetch('/api/quiz');
-    if(res.ok){ questions = await res.json(); }
-    else { questions = await fetch('/data_questions.json').then(r=>r.json()); }
-  } catch(e){
-    questions = await fetch('/data_questions.json').then(r=>r.json());
-  }
-  // frontend picks random 20 out of questions
-  questions = shuffle(questions).slice(0,20);
-  answers = questions.map(q=>({id:q.id, selected:null}));
-  showQuestion();
-  startTimer();
-}
-
-function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a; }
-
-function showQuestion(){
-  const q = questions[current];
-  document.getElementById('qtext').innerText = q.question;
-  const opts = document.getElementById('opts'); opts.innerHTML='';
-  q.options.forEach((o,i)=>{ const d=document.createElement('div'); d.className='opt'; d.innerText=o; d.onclick=()=>{ answers[current].selected=i; document.querySelectorAll('.opt').forEach(x=>x.style.boxShadow='none'); d.style.boxShadow='0 0 0 4px rgba(0,0,0,0.08)'; }; opts.appendChild(d); });
-  document.getElementById('submit').style.display = (current===questions.length-1)?'inline-block':'none';
-}
-document.getElementById('next')?.addEventListener('click', ()=>{ if(current<questions.length-1){ current++; showQuestion(); } });
-document.getElementById('prev')?.addEventListener('click', ()=>{ if(current>0){ current--; showQuestion(); } });
-document.getElementById('submit')?.addEventListener('click', submitQuiz);
-
-function startTimer(){ timerInterval=setInterval(()=>{ timer--; const m=Math.floor(timer/60), s=timer%60; document.getElementById('timer').innerText = `${m}:${s<10? '0'+s : s}`; if(timer<=0){ clearInterval(timerInterval); submitQuiz(); } },1000); }
-
-async function submitQuiz(){
-  clearInterval(timerInterval);
-  const payload = { email: JSON.parse(localStorage.getItem('quizUser')||'{}').email, answers };
-  try{
-    const res = await fetch('/api/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-    const j = await res.json();
-    alert('Submitted. Score: '+j.report.marks+'/'+j.report.totalQuestions);
-    window.location.href='/';
-  }catch(e){
-    // fallback evaluate locally using data_questions.json
-    const all = await fetch('/data_questions.json').then(r=>r.json());
-    let correct=0, attempted=0;
-    answers.forEach(a=>{ const q=all.find(x=>x.id===a.id); if(a.selected!==null){ attempted++; if(a.selected===q.answer_index) correct++; }});
-    alert(`Score (local): ${correct}/${answers.length}`);
-    window.location.href='/';
-  }
-}
-
-window.addEventListener('load', ()=>{ const user = localStorage.getItem('quizUser'); if(!user && !location.pathname.endsWith('participant-login.html')){ window.location.href='/participant-login.html'; } if(location.pathname.endsWith('quiz.html')) loadQuestions(); });
-// Call this when user finishes quiz
+// Function to submit result to backend
 async function submitResult(userId, score) {
   try {
     const response = await fetch("/submit", {
@@ -68,12 +11,51 @@ async function submitResult(userId, score) {
     console.log("Server response:", data);
 
     if (data.success) {
-      alert("Result saved successfully!");
+      alert("✅ Result saved successfully!");
     } else {
-      alert("Failed to save result: " + data.error);
+      alert("⚠️ Failed to save result: " + data.error);
     }
   } catch (err) {
     console.error("Error saving result:", err);
-    alert("Error saving result");
+    alert("❌ Error saving result");
   }
 }
+
+// Function to evaluate quiz
+function evaluateQuiz(answers, allQuestions, userId) {
+  let attempted = 0, correct = 0, wrong = 0;
+
+  for (const a of answers) {
+    const q = allQuestions.find(x => x.id === a.id);
+    if (!q) continue;
+    if (a.selected === null || a.selected === undefined) continue;
+    attempted++;
+    if (a.selected === q.answer_index) correct++; else wrong++;
+  }
+
+  const report = {
+    totalQuestions: answers.length,
+    attempted,
+    notAnswered: answers.length - attempted,
+    correct,
+    wrong,
+    marks: correct
+  };
+
+  console.log("Final Report:", report);
+
+  // 🔑 Auto-submit result to backend
+  submitResult(userId, report.marks);
+
+  return report;
+}
+
+// Example usage when quiz ends
+// Suppose you already have `answers` and `allQuestions`
+document.getElementById("finishBtn").addEventListener("click", () => {
+  const userId = document.getElementById("userIdInput").value; // take from login/input
+  const report = evaluateQuiz(answers, allQuestions, userId);
+
+  // Show report to user
+  alert(`You scored ${report.marks}/${report.totalQuestions}`);
+});
