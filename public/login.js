@@ -9,12 +9,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   form.addEventListener("submit", (e) => {
-    e.preventDefault(); // stop default page reload
+    e.preventDefault(); // stop default reload
 
     const userId = document.getElementById("userId").value.trim();
     const password = document.getElementById("password").value.trim();
 
-    // For now: validate using local data_users.json
+    // Validate using your uploaded DATA FOR QUIZ USERID,PW (data_users.json)
     fetch("/data_users.json")
       .then((res) => res.json())
       .then((users) => {
@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         if (match) {
-          // Save user session in browser
+          // Save session
           localStorage.setItem("user_id", userId);
 
           // Redirect to quiz page
