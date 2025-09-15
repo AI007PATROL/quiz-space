@@ -1,67 +1,85 @@
-// At the top of quiz.js
-const loggedInUser = localStorage.getItem("user_id");
-if (!loggedInUser) {
-  // If no login, redirect back
-  window.location.href = "/participant-login.html";
-}
-// Function to submit result to backend
-async function submitResult(userId, score) {
-  try {
-    const response = await fetch("/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ user_id: userId, score }),
+// public/quiz.js
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Check if user is logged in
+  const userId = localStorage.getItem("user_id");
+  if (!userId) {
+    alert("⚠️ Please login first!");
+    window.location.href = "/participant-login.html";
+    return;
+  }
+
+  // Display user info
+  const userInfoDiv = document.getElementById("userInfo");
+  if (userInfoDiv) {
+    userInfoDiv.textContent = `Logged in as: ${userId}`;
+  }
+
+  // Load questions
+  fetch("/quiz_questions.json")
+    .then((res) => res.json())
+    .then((questions) => {
+      renderQuestions(questions);
+
+      // Attach submit listener
+      const form = document.getElementById("quizForm");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        let score = 0;
+        questions.forEach((q, index) => {
+          const selected = document.querySelector(
+            `input[name="q${index}"]:checked`
+          );
+          if (selected && selected.value === q.answer) {
+            score++;
+          }
+        });
+
+        // Save result to DB via API (worker or backend)
+        fetch("/api/save-result", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ user_id: userId, score }),
+        })
+          .then((res) => res.json())
+          .then((resp) => {
+            alert(`✅ Quiz submitted! Your score: ${score}`);
+            localStorage.removeItem("user_id"); // logout after submit
+            window.location.href = "/thankyou.html";
+          })
+          .catch((err) => {
+            console.error("Error saving result:", err);
+            alert("⚠️ Could not save result, try again.");
+          });
+      });
+    })
+    .catch((err) => {
+      console.error("Error loading questions:", err);
     });
-
-    const data = await response.json();
-    console.log("Server response:", data);
-
-    if (data.success) {
-      alert("✅ Result saved successfully!");
-    } else {
-      alert("⚠️ Failed to save result: " + data.error);
-    }
-  } catch (err) {
-    console.error("Error saving result:", err);
-    alert("❌ Error saving result");
-  }
-}
-
-// Function to evaluate quiz
-function evaluateQuiz(answers, allQuestions, userId) {
-  let attempted = 0, correct = 0, wrong = 0;
-
-  for (const a of answers) {
-    const q = allQuestions.find(x => x.id === a.id);
-    if (!q) continue;
-    if (a.selected === null || a.selected === undefined) continue;
-    attempted++;
-    if (a.selected === q.answer_index) correct++; else wrong++;
-  }
-
-  const report = {
-    totalQuestions: answers.length,
-    attempted,
-    notAnswered: answers.length - attempted,
-    correct,
-    wrong,
-    marks: correct
-  };
-
-  console.log("Final Report:", report);
-
-  // 🔑 Auto-submit result to backend
-  submitResult(userId, report.marks);
-
-  return report;
-}
-
-// Example usage when quiz ends
-// Suppose you already have `answers` and `allQuestions`
-document.getElementById("finishBtn").addEventListener("click", () => {
-  const userId = document.getElementById("userIdInput").value; // take from login/input
-  const report = evaluateQuiz(answers, allQuestions, userId);
-
-  // Show report to user
-  alert(`You scored ${report.marks}/${report.totalQuestions}`);
 });
+
+function renderQuestions(questions) {
+  const quizContainer = document.getElementById("quizQuestions");
+  if (!quizContainer) return;
+
+  quizContainer.innerHTML = "";
+
+  questions.forEach((q, index) => {
+    const div = document.createElement("div");
+    div.classList.add("question-block");
+    div.innerHTML = `
+      <p><strong>Q${index + 1}:</strong> ${q.question}</p>
+      ${q.options
+        .map(
+          (opt, i) => `
+        <label>
+          <input type="radio" name="q${index}" value="${opt}" /> ${opt}
+        </label><br/>
+      `
+        )
+        .join("")}
+    `;
+    quizContainer.appendChild(div);
+  });
+}
