@@ -55,3 +55,25 @@ async function submitQuiz(){
 }
 
 window.addEventListener('load', ()=>{ const user = localStorage.getItem('quizUser'); if(!user && !location.pathname.endsWith('participant-login.html')){ window.location.href='/participant-login.html'; } if(location.pathname.endsWith('quiz.html')) loadQuestions(); });
+// Call this when user finishes quiz
+async function submitResult(userId, score) {
+  try {
+    const response = await fetch("/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ user_id: userId, score }),
+    });
+
+    const data = await response.json();
+    console.log("Server response:", data);
+
+    if (data.success) {
+      alert("Result saved successfully!");
+    } else {
+      alert("Failed to save result: " + data.error);
+    }
+  } catch (err) {
+    console.error("Error saving result:", err);
+    alert("Error saving result");
+  }
+}
