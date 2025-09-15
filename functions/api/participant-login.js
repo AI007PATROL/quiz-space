@@ -1,15 +1,31 @@
-
-export const onRequest = async ({ request }) => {
-  const body = await request.json();
-  const email = (body.email||'').toString().trim();
-  const password = (body.password||'').toString().trim();
+// functions/participant-login.js
+export async function onRequestPost(context) {
   try {
-    const resp = await fetch(new URL('/data_users.json', request.url).toString());
+    const { request } = context;
+    const { user_id, password } = await request.json();
+
+    // Load users.json (converted from Excel)
+    const resp = await fetch(new URL("../public/users.json", import.meta.url));
     const users = await resp.json();
-    const u = users.find(x=>x.email===email && x.password===password);
-    if(u) return new Response(JSON.stringify({ success:true, email:u.email, username:u.username }), { status:200 });
-    return new Response(JSON.stringify({ success:false }), { status:401 });
-  } catch(e){
-    return new Response(JSON.stringify({ success:false }), { status:500 });
+
+    const user = users.find(
+      (u) => u["Email Address"] === user_id && String(u["Phone Number"]) === password
+    );
+
+    if (user) {
+      return new Response(JSON.stringify({ success: true }), {
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    return new Response(JSON.stringify({ success: false }), {
+      headers: { "Content-Type": "application/json" },
+      status: 401,
+    });
+  } catch (err) {
+    return new Response(JSON.stringify({ success: false, error: err.message }), {
+      headers: { "Content-Type": "application/json" },
+      status: 500,
+    });
   }
-};
+}
