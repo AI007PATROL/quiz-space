@@ -1,0 +1,552 @@
+[
+  {
+    "id": 1,
+    "question": "Which company used “Blue Ocean Strategy” by creating an uncontested market space in the entertainment industry?",
+    "options": [
+      "Netflix",
+      "Cirque du Soleil",
+      "Spotify",
+      "Amazon"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 2,
+    "question": "Why do many startups fail within the first 5 years?",
+    "options": [
+      "Lack of investors",
+      "Poor product quality",
+      "No market need",
+      "High employee turnover"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 3,
+    "question": "What does MVP stand for in startups?",
+    "options": [
+      "Most Valuable Product",
+      "Minimum Viable Product",
+      "Maximum Value Proposition",
+      "Market Validation Process"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 4,
+    "question": "Which company was originally called 'BackRub'?",
+    "options": [
+      "Amazon",
+      "Google",
+      "Facebook",
+      "Yahoo"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 5,
+    "question": "Which Indian startup is a top food delivery app?",
+    "options": [
+      "Flipkart",
+      "Ola",
+      "Swiggy",
+      "Paytm"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 6,
+    "question": "A Unicorn startup is valued at:",
+    "options": [
+      "$10 million",
+      "$100 million",
+      "$500 million",
+      "$1 billion"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 7,
+    "question": "Angel Investors are:",
+    "options": [
+      "Government officials",
+      "Early-stage investors",
+      "Bank loan officers",
+      "Venture capital firms"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 8,
+    "question": "Name the 2016 Indian initiative to support startups.",
+    "options": [
+      "Digital India",
+      "Startup India",
+      "Make in India",
+      "Skill India"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 9,
+    "question": "Intellectual Property (IP) includes:",
+    "options": [
+      "Patents, trademarks, copyrights",
+      "Office buildings",
+      "Company vehicles",
+      "Employee salaries"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 10,
+    "question": "'Burn rate' refers to:",
+    "options": [
+      "Employee turnover",
+      "Rate of spending capital",
+      "Rate of customer growth",
+      "Share market loss"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 11,
+    "question": "A 'Pitch Deck' is:",
+    "options": [
+      "A marketing campaign",
+      "Startup presentation to investors",
+      "Office workspace",
+      "Customer survey form"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 12,
+    "question": "What does CEO stand for?",
+    "options": [
+      "Chief Economic Officer",
+      "Chief Executive Officer",
+      "Corporate Executive Officer",
+      "Chief Efficiency Officer"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 13,
+    "question": "Who is the founder of Amazon?",
+    "options": [
+      "Bill Gates",
+      "Elon Musk",
+      "Jeff Bezos",
+      "Mark Zuckerberg"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 14,
+    "question": "Which company owns Instagram?",
+    "options": [
+      "Twitter",
+      "Meta (Facebook)",
+      "Microsoft",
+      "Snapchat"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 15,
+    "question": "Which of these companies started in a college dorm room?",
+    "options": [
+      "Facebook",
+      "Tata",
+      "Reliance",
+      "Infosys"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 16,
+    "question": "The founder of Facebook is:",
+    "options": [
+      "Sundar Pichai",
+      "Mark Zuckerberg",
+      "Larry Page",
+      "Jack Dorsey"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 17,
+    "question": "Which Indian startup is famous for digital payments and wallet services?",
+    "options": [
+      "Paytm",
+      "Rupay",
+      "PhonePe",
+      "GPay"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 18,
+    "question": "Who is the CEO of Tesla?",
+    "options": [
+      "Sundar Pichai",
+      "Satya Nadella",
+      "Elon Musk",
+      "Steve Jobs"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 19,
+    "question": "Which startup is known for online food delivery with a red logo?",
+    "options": [
+      "Ola",
+      "Swiggy",
+      "Zomato",
+      "Dunzo"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 20,
+    "question": "What is the term for a startup valued at over $1 billion?",
+    "options": [
+      "Dragon",
+      "Unicorn",
+      "Phoenix",
+      "Titan"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 21,
+    "question": "Which Hyderabad startup became India’s first private company to launch a rocket into space?",
+    "options": [
+      "Agnikul Cosmos",
+      "Team Indus",
+      "Skyroot Aerospace",
+      "Bellatrix Aerospace"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 22,
+    "question": "Which Kochi startup is often called the 'SurveyMonkey of India'?",
+    "options": [
+      "CareStack",
+      "Entri",
+      "SurveySparrow",
+      "Toffee Ride"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 23,
+    "question": "What is the sector focus of Hyderabad startup 'Recykal'?",
+    "options": [
+      "E-commerce",
+      "Waste management & recycling",
+      "FinTech",
+      "Healthcare"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 24,
+    "question": "UrbanKisaan, a Hyderabad startup, is well-known for:",
+    "options": [
+      "Food delivery",
+      "Vertical farming & hydroponics",
+      "Online grocery retail",
+      "Agriculture equipment sales"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 25,
+    "question": "Which South Indian startup is a leader in AI-powered HR and payroll software?",
+    "options": [
+      "Freshworks",
+      "Keka HR",
+      "Zoho",
+      "Darwinbox"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 26,
+    "question": "The startup Genrobotics, from Kerala, is solving which social problem?",
+    "options": [
+      "Online learning",
+      "Manual scavenging",
+      "Urban traffic congestion",
+      "Water pollution"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 27,
+    "question": "Which South Indian unicorn was founded in Chennai and is known for SaaS solutions?",
+    "options": [
+      "Flipkart",
+      "Freshworks",
+      "Swiggy",
+      "Ola"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 28,
+    "question": "Which startup founded in Bangalore offers personalized health & diet solutions through an app?",
+    "options": [
+      "CureFit",
+      "HealthifyMe",
+      "Practo",
+      "mfine"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 29,
+    "question": "Which Kerala startup created the children’s learning app 'Toffee Ride'?",
+    "options": [
+      "CareStack",
+      "Toffee Ride",
+      "Entri",
+      "Foradian"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 30,
+    "question": "'Ather Energy', headquartered in Bangalore, is famous for making:",
+    "options": [
+      "Electric scooters",
+      "Solar panels",
+      "Agricultural drones",
+      "Food processing machines"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 31,
+    "question": "Which Hyderabad-based space startup is developing small-lift orbital launch vehicles?",
+    "options": [
+      "Agnikul Cosmos",
+      "Bellatrix Aerospace",
+      "Skyroot Aerospace",
+      "Team Indus"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 32,
+    "question": "The Kochi-based startup CareStack is designed for which sector?",
+    "options": [
+      "FinTech",
+      "Dental practice management",
+      "Real estate",
+      "Waste management"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 33,
+    "question": "Which South Indian startup is known for smoothies and health cafés across India?",
+    "options": [
+      "Raw Pressery",
+      "Drunken Monkey",
+      "Chai Point",
+      "Epigamia"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 34,
+    "question": "Falguni Nayar is associated with Nykaa. Which South Indian woman entrepreneur founded Biocon?",
+    "options": [
+      "Vandana Luthra",
+      "Kiran Mazumdar-Shaw",
+      "Suchi Mukherjee",
+      "Meena Ganesh"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 35,
+    "question": "Which Bengaluru-based startup created the popular workplace communication tool 'Flock'?",
+    "options": [
+      "Zoho",
+      "Directi",
+      "Bhavin Turakhia’s startup",
+      "Freshworks"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 36,
+    "question": "Which startup from Kochi builds a robot called 'Bandicoot' to address manual scavenging?",
+    "options": [
+      "Genrobotics",
+      "CareStack",
+      "Entri",
+      "Toffee Ride"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 37,
+    "question": "Which Kochi based ed-tech startup provides courses & study materials for regional exams in local languages?",
+    "options": [
+      "CareStack",
+      "Toffee Ride",
+      "Entri",
+      "Foradian"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 38,
+    "question": "What does the startup 'Netrasemi', based in Thiruvananthapuram, specialize in?",
+    "options": [
+      "AR/VR education",
+      "Semiconductor chips (IoT / Edge-AI)",
+      "Organic farming tech",
+      "Logistics services"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 39,
+    "question": "Which startup headquartered in Hyderabad offers cloud-based human resource and payroll management software?",
+    "options": [
+      "Freshworks",
+      "Keka HR",
+      "Darwinbox",
+      "Zoho"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 40,
+    "question": "What is 'Recykal' (based in Hyderabad) doing?",
+    "options": [
+      "Marketplace for handmade crafts",
+      "Waste management / digitizing recycling operations",
+      "Fintech for small businesses",
+      "Food delivery startup"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 41,
+    "question": "The startup Skyroot Aerospace, from Hyderabad, is known for working in what field?",
+    "options": [
+      "Food tech",
+      "Rocket / space launch vehicles",
+      "Health monitoring wearables",
+      "Ride-hailing services"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 42,
+    "question": "Which Kerala startup focuses on dental practice management software in cloud?",
+    "options": [
+      "CareStack",
+      "Toffee Ride",
+      "Entri",
+      "Foradian"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 43,
+    "question": "What does 'SurveySparrow' (from Kochi) provide?",
+    "options": [
+      "Financial services",
+      "Survey/feedback platform",
+      "Agricultural tools",
+      "Fitness coaching"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 44,
+    "question": "Which startup from Kerala has an app that helps children in Classes I to IV through interactive content?",
+    "options": [
+      "CareStack",
+      "Toffee Ride",
+      "Entri",
+      "Foradian"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 45,
+    "question": "'UrbanKisaan' is a Hyderabad startup. What sector is it in?",
+    "options": [
+      "FinTech",
+      "Agritech (urban farming / vertical/hydroponic farms)",
+      "E-commerce",
+      "EdTech"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 46,
+    "question": "Which startup from Kerala developed a vernacular learning platform for affordable skill training?",
+    "options": [
+      "CareStack",
+      "Toffee Ride",
+      "Entri.app",
+      "Foradian"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 47,
+    "question": "What is the main product of 'ClusterDev Technologies' from Kerala?",
+    "options": [
+      "Language typing and sticker apps across Indian native languages",
+      "Drone manufacturing",
+      "Organic food delivery",
+      "Healthcare diagnostics"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 48,
+    "question": "Which startup from Telangana works in battery energy storage systems and electric mobility?",
+    "options": [
+      "PURE Energy (Pure EV)",
+      "CareStack",
+      "Entri",
+      "Toffee Ride"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 49,
+    "question": "Which of the following is a South Indian startup focusing on fitness/wellness/nutrition via AI + human experts?",
+    "options": [
+      "Entri",
+      "HealthifyMe",
+      "Keka HR",
+      "Skyroot Aerospace"
+    ],
+    "answer_index": 0
+  },
+  {
+    "id": 50,
+    "question": "In 2021, a Kochi-based startup developed an AI-powered smart helmet to detect drowsiness. Which startup?",
+    "options": [
+      "Netradyne",
+      "Glider AI",
+      "Raksha SafeDrive",
+      "ASIMOV Robotics"
+    ],
+    "answer_index": 0
+  }
+]
