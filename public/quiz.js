@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         });
 
-        // Save result to DB via API (worker or backend)
+        // Save result to DB
         fetch("/api/save-result", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -44,18 +44,23 @@ document.addEventListener("DOMContentLoaded", () => {
         })
           .then((res) => res.json())
           .then((resp) => {
-            alert(`✅ Quiz submitted! Your score: ${score}`);
-            localStorage.removeItem("user_id"); // logout after submit
+            console.log("✅ Server response:", resp);
+
+            // Clear user session (logout)
+            localStorage.removeItem("user_id");
+            localStorage.removeItem("quizStarted");
+
+            // Redirect to Thank You page
             window.location.href = "/thankyou.html";
           })
           .catch((err) => {
-            console.error("Error saving result:", err);
-            alert("⚠️ Could not save result, try again.");
+            console.error("❌ Error saving result:", err);
+            alert("⚠️ Could not save result, please try again.");
           });
       });
     })
     .catch((err) => {
-      console.error("Error loading questions:", err);
+      console.error("❌ Error loading questions:", err);
     });
 });
 
