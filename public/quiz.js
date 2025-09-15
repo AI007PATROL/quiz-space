@@ -1,3 +1,9 @@
+// At the top of quiz.js
+const loggedInUser = localStorage.getItem("user_id");
+if (!loggedInUser) {
+  // If no login, redirect back
+  window.location.href = "/participant-login.html";
+}
 // Function to submit result to backend
 async function submitResult(userId, score) {
   try {
