@@ -2,8 +2,6 @@
 export async function onRequestPost(context) {
   try {
     const { request, env } = context;
-
-    // Get JSON body from frontend
     const { user_id, score } = await request.json();
 
     if (!user_id || score === undefined) {
@@ -13,7 +11,6 @@ export async function onRequestPost(context) {
       );
     }
 
-    // Insert result into Cloudflare D1
     await env.QUIZ_DB.prepare(
       "INSERT INTO results (user_id, score) VALUES (?, ?)"
     ).bind(user_id, score).run();
