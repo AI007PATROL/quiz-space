@@ -1,1 +1,54 @@
-<!doctype html><html><head><meta charset="utf-8"><title>Quiz</title><link rel="stylesheet" href="/style.css"></head><body><div class="card"><div id="timer">20:00</div><h2 id="qtext">Loading...</h2><div id="opts"></div><div><button id="prev">Previous</button><button id="next">Next</button><button id="submit" style="display:none">Submit</button></div></div><script src="/quiz.js"></script></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>Quiz</h2>
+  <div id="quiz"></div>
+  <button id="submitBtn">Submit</button>
+  <div id="result"></div>
+
+  <script>
+    async function loadQuestions() {
+      const res = await fetch("/get-questions");
+      return await res.json();
+    }
+
+    function renderQuiz(questions) {
+      const quizDiv = document.getElementById("quiz");
+      quizDiv.innerHTML = "";
+      questions.forEach((q, i) => {
+        let opts = q.options.map((opt, idx) =>
+          `<label><input type="radio" name="q${i}" value="${idx}"> ${opt}</label><br>`
+        ).join("");
+        quizDiv.innerHTML += `<p>${i+1}. ${q.question}</p>${opts}`;
+      });
+    }
+
+    document.getElementById("submitBtn").addEventListener("click", async () => {
+      const userId = localStorage.getItem("userId");
+      if (!userId) return alert("Not logged in!");
+
+      const questions = await loadQuestions();
+      let score = 0;
+      questions.forEach((q, i) => {
+        const ans = document.querySelector(`input[name="q${i}"]:checked`);
+        if (ans && parseInt(ans.value) === q.answer_index) score++;
+      });
+
+      document.getElementById("result").innerText = `You scored ${score}/${questions.length}`;
+
+      // Save to DB
+      await fetch("/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_id: userId, score })
+      });
+    });
+
+    loadQuestions().then(renderQuiz);
+  </script>
+</body>
+</html>
